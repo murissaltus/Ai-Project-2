@@ -47,14 +47,15 @@ export async function POST(req: NextRequest) {
 
     const { email_addresses, first_name, last_name, id } = event.data;
 
-    await prisma.user.created({
+    await prisma.user.create({
       data: {
         email: email_addresses[0].email_address,
         name: `${first_name} ${last_name}`,
         clerkId: id,
       },
     });
-    return NextResponse.json;
+
+    return NextResponse.json({ message: "Success" }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 500 });
   }
