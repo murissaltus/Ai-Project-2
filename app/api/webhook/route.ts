@@ -2,9 +2,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { Webhook } from "svix";
-import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { error } from "console";
 
 type Event = {
   type: string;
@@ -18,7 +16,6 @@ type Event = {
 
 export async function POST(req: NextRequest) {
   const webhookSecret = process.env.CLERK_WEBHOOK_KEY;
-
   if (!webhookSecret) {
     return NextResponse.json(
       { error: "Missing webhook secret" },
@@ -29,7 +26,6 @@ export async function POST(req: NextRequest) {
   const svixId = req.headers.get("svix-id");
   const svixTimestamp = req.headers.get("svix-timestamp");
   const svixSignature = req.headers.get("svix-signature");
-
   if (!svixId || !svixTimestamp || !svixSignature) {
     return NextResponse.json({ error: "Missing headers" }, { status: 400 });
   }
@@ -45,21 +41,26 @@ export async function POST(req: NextRequest) {
     }) as Event;
 
     if (event.type !== "user.created") {
-      return NextResponse.json({ error: "Ignore event" }, { status: 400 });
+      return NextResponse.json({ message: "Ignored event" });
     }
 
     const { email_addresses, first_name, last_name, id } = event.data;
 
-    await prisma.user.create({
-      data: {
+    const { prisma } = await import("@/lib/prisma");
+
+    await prisma.user.upsert({
+      where: { clerkId: id },
+      update: {},
+      create: {
         email: email_addresses[0].email_address,
         name: `${first_name} ${last_name}`,
         clerkId: id,
       },
     });
 
-    return NextResponse.json({ message: "Success" }, { status: 201 });
-  } catch (error) {
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Webhook verification error:", err);
     return NextResponse.json({ error: "Invalid signature" }, { status: 500 });
   }
 }
