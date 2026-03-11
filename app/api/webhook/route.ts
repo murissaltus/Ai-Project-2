@@ -1,7 +1,8 @@
 import { Webhook } from "svix";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { error } from "console";
+
+export const dynamic = "force-dynamic";
 
 type Event = {
   type: string;
