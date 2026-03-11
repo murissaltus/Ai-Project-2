@@ -447,17 +447,10 @@
   resolved "https://registry.npmjs.org/@nolyfill/is-core-module/-/is-core-module-1.0.39.tgz"
   integrity sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==
 
-"@prisma/client-runtime-utils@7.4.2":
-  version "7.4.2"
-  resolved "https://registry.npmjs.org/@prisma/client-runtime-utils/-/client-runtime-utils-7.4.2.tgz"
-  integrity sha512-cID+rzOEb38VyMsx5LwJMEY4NGIrWCNpKu/0ImbeooQ2Px7TI+kOt7cm0NelxUzF2V41UVVXAmYjANZQtCu1/Q==
-
-"@prisma/client@^7.4.2":
-  version "7.4.2"
-  resolved "https://registry.npmjs.org/@prisma/client/-/client-7.4.2.tgz"
-  integrity sha512-ts2mu+cQHriAhSxngO3StcYubBGTWDtu/4juZhXCUKOwgh26l+s4KD3vT2kMUzFyrYnll9u/3qWrtzRv9CGWzA==
-  dependencies:
-    "@prisma/client-runtime-utils" "7.4.2"
+"@prisma/client@^6.19.2":
+  version "6.19.2"
+  resolved "https://registry.npmjs.org/@prisma/client/-/client-6.19.2.tgz"
+  integrity sha512-gR2EMvfK/aTxsuooaDA32D8v+us/8AAet+C3J1cc04SW35FPdZYgLF+iN4NDLUgAaUGTKdAB0CYenu1TAgGdMg==
 
 "@prisma/config@7.4.2":
   version "7.4.2"
@@ -3299,7 +3292,7 @@ typescript-eslint@^8.46.0:
     "@typescript-eslint/typescript-estree" "8.56.1"
     "@typescript-eslint/utils" "8.56.1"
 
-typescript@^5, typescript@>=3.3.1, typescript@>=4.8.4, "typescript@>=4.8.4 <6.0.0", typescript@>=5, typescript@>=5.4.0:
+typescript@^5, typescript@>=3.3.1, typescript@>=4.8.4, "typescript@>=4.8.4 <6.0.0", typescript@>=5, typescript@>=5.1.0, typescript@>=5.4.0:
   version "5.9.3"
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz"
   integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
